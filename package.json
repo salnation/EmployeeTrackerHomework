@@ -1,0 +1,26 @@
+{
+    "name": "EmployeeTrackerHomework",
+    "version": "1.0.0",
+    "description": "Building a solution for managing a company's employees using node, inquirer, and MySQL.",
+    "main": "server.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node server.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/salnation/EmployeeTrackerHomework"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/salnation/EmployeeTrackerHomework/issues"
+    },
+    "homepage": "https://github.com/salnation/EmployeeTrackerHomework#readme",
+    "dependencies": {
+      "console.table": "^0.10.0",
+      "inquirer": "^7.0.0",
+      "mysql": "^2.17.1"
+    }
+  }
