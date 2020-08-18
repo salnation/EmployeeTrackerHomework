@@ -25,15 +25,42 @@ function startApp() {
         type: "list",
         message: "Welcome to your new employee database! Please make a selection:",
         choices: [
-                "View all employees",
-                "View all departments",
-                "View all roles",
-                "Add an employee",
+                "View employees",
+                "View departments",
+                "View roles",
+                "Add employee",
                 "Add department",
                 "Add a role",
-                "EXIT"
+                "Exit"
         ]
 
     // next to create a switch with several cases matching the choices above
 
-    
+}).then(function (answer) {
+    switch (answer.action) {
+        case "View employees":
+            viewEmployees();
+            break;
+        case "View departments":
+            viewDepartments();
+            break;
+        case "View roles":
+            viewRoles();
+            break;
+        case "Add employee":
+            addEmployee();
+            break;
+        case "Add department":
+            addDepartment();
+            break;
+        case "Add a role":
+            addRole();
+            break;
+        case "Exit": 
+            endApp();
+            break;
+        default:
+            break;
+    }
+})
+}
