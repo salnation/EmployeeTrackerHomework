@@ -16,3 +16,24 @@ connection.connect(function(err){
     if (err) throw err;
     startApp();
 })
+
+// utilizing the inquirer npm package 
+function startApp() {
+    inquirer
+    .prompt({
+        name: "action",
+        type: "list",
+        message: "Welcome to your new employee database! Please make a selection:",
+        choices: [
+                "View all employees",
+                "View all departments",
+                "View all roles",
+                "Add an employee",
+                "Add department",
+                "Add a role",
+                "EXIT"
+        ]
+
+    // next to create a switch with several cases matching the choices above
+
+    
