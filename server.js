@@ -97,6 +97,8 @@ function viewRoles() {
 
 // next will be adding the employee, department, and role 
 
+// inquirer - add employee
+
 function addEmployee() {
     connection.query("SELECT * FROM role", function (err, res) {
     if (err) throw err;
@@ -150,6 +152,8 @@ function addEmployee() {
 })
 }
 
+// inquirer - add department
+
 function addDepartment() {
     inquirer
     .prompt([
@@ -173,6 +177,61 @@ function addDepartment() {
         })
     })
 }
+
+// inquirer - add role 
+
+function addRole() {
+    connection.query("SELECT * FROM department", function(err, res) {
+    if (err) throw err;
+
+    inquirer 
+    .prompt([
+        {
+            name: "new_role",
+            type: "input", 
+            message: "What is the Title of the new role?"
+        },
+        {
+            name: "salary",
+            type: "input",
+            message: "What is the salary of this position? (Enter a number?)"
+        },
+        {
+            name: "deptChoice",
+            type: "rawlist",
+            choices: function() {
+                var deptArry = [];
+                for (let i = 0; i < res.length; i++) {
+                deptArry.push(res[i].name);
+                }
+                return deptArry;
+            },
+        }
+    ]).then(function (answer) {
+        let deptID;
+        for (let j = 0; j < res.length; j++) {
+            if (res[j].name == answer.deptChoice) {
+                deptID = res[j].id;
+            }
+        }
+
+        connection.query(
+            "INSERT INTO role SET ?",
+            {
+                title: answer.new_role,
+                salary: answer.salary,
+                department_id: deptID
+            },
+            function (err, res) {
+                if(err)throw err;
+                console.log("Congratulations! Your new role has been successfully added!");
+                startApp();
+            }
+        )
+    })
+    })
+    
+}  
 
 function endApp() {
     connection.end();
